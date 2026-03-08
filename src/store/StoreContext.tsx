@@ -23,32 +23,20 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [state, setState] = useState<AppState>(initialState);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // Load from server on mount
+  // Load from localStorage on mount
   useEffect(() => {
-    const loadSettings = async () => {
+    const loadSettings = () => {
       try {
-        const response = await fetch('/api/settings');
-        if (response.ok) {
-          const serverData = await response.json();
-          if (Object.keys(serverData).length > 0) {
-            setState(s => ({
-              ...s,
-              sheetUrls: { ...s.sheetUrls, ...(serverData.sheetUrls || {}) }
-            }));
-          } else {
-            // If server is empty, try localStorage
-            const saved = localStorage.getItem('diario_professor_sheets');
-            if (saved) {
-              const parsed = JSON.parse(saved);
-              setState(s => ({
-                ...s,
-                sheetUrls: { ...s.sheetUrls, ...(parsed.sheetUrls || {}) }
-              }));
-            }
-          }
+        const saved = localStorage.getItem('diario_professor_sheets');
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          setState(s => ({
+            ...s,
+            sheetUrls: { ...s.sheetUrls, ...(parsed.sheetUrls || {}) }
+          }));
         }
       } catch (e) {
-        console.error('Failed to load settings from server', e);
+        console.error('Failed to load settings from localStorage', e);
       } finally {
         setIsLoaded(true);
       }
@@ -56,20 +44,15 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     loadSettings();
   }, []);
 
-  // Save to server and localStorage whenever state changes
+  // Save to localStorage whenever state changes
   useEffect(() => {
     if (!isLoaded) return;
 
-    const saveSettings = async () => {
+    const saveSettings = () => {
       try {
         localStorage.setItem('diario_professor_sheets', JSON.stringify(state));
-        await fetch('/api/settings', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(state)
-        });
       } catch (e) {
-        console.error('Failed to save settings to server', e);
+        console.error('Failed to save settings to localStorage', e);
       }
     };
 
