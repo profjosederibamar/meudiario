@@ -19,6 +19,7 @@ export const Settings: React.FC = () => {
     { key: 'bimester4', label: '4º Bimestre' },
     { key: 'reportCard', label: 'Boletim' },
     { key: 'calendar', label: 'Calendário' },
+    { key: 'seminars', label: 'Seminários' },
   ] as const;
 
   return (

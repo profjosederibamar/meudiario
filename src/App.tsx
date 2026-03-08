@@ -13,6 +13,7 @@ import { ReportCard } from './pages/ReportCard';
 import { Calendar } from './pages/Calendar';
 import { Settings } from './pages/Settings';
 import { Guide } from './pages/Guide';
+import { Seminars } from './pages/Seminars';
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
             <Route path="bimestre/:id" element={<Assessments />} />
             <Route path="boletim" element={<ReportCard />} />
             <Route path="calendario" element={<Calendar />} />
+            <Route path="seminarios" element={<Seminars />} />
             <Route path="guia" element={<Guide />} />
             <Route path="configuracoes" element={<Settings />} />
           </Route>

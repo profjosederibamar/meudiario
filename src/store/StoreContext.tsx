@@ -9,6 +9,7 @@ const initialState: AppState = {
     bimester4: '',
     reportCard: '',
     calendar: '',
+    seminars: '',
   }
 };
 

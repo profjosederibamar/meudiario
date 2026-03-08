@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { 
-  LayoutDashboard, 
-  ClipboardCheck, 
-  FileText, 
-  Calendar, 
+import {
+  LayoutDashboard,
+  ClipboardCheck,
+  FileText,
+  Calendar,
   Settings,
   Menu,
   HelpCircle,
-  GraduationCap
+  GraduationCap,
+  Users
 } from 'lucide-react';
 
 const navItems = [
@@ -19,6 +20,7 @@ const navItems = [
   { path: '/bimestre/4', label: '4º Bimestre', icon: ClipboardCheck },
   { path: '/boletim', label: 'Boletim', icon: FileText },
   { path: '/calendario', label: 'Calendário', icon: Calendar },
+  { path: '/seminarios', label: 'Seminários', icon: Users },
   { path: '/guia', label: 'Guia de Uso', icon: HelpCircle },
   { path: '/configuracoes', label: 'Configurações', icon: Settings },
 ];
@@ -31,7 +33,7 @@ export const Layout: React.FC = () => {
     <div className="min-h-screen bg-gray-50 flex">
       {/* Mobile sidebar backdrop */}
       {sidebarOpen && (
-        <div 
+        <div
           className="fixed inset-0 z-20 bg-black/50 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
@@ -47,12 +49,12 @@ export const Layout: React.FC = () => {
           <GraduationCap className="h-8 w-8 text-indigo-600 mr-3" />
           <span className="text-xl font-bold text-gray-800">Diário do Prof</span>
         </div>
-        
+
         <nav className="p-4 space-y-1 overflow-y-auto h-[calc(100vh-4rem)]">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = location.pathname === item.path || (item.path !== '/' && location.pathname.startsWith(item.path));
-            
+
             return (
               <Link
                 key={item.path}
@@ -60,8 +62,8 @@ export const Layout: React.FC = () => {
                 onClick={() => setSidebarOpen(false)}
                 className={`
                   flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-colors
-                  ${isActive 
-                    ? 'bg-indigo-50 text-indigo-700' 
+                  ${isActive
+                    ? 'bg-indigo-50 text-indigo-700'
                     : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'}
                 `}
               >

@@ -12,5 +12,6 @@ export type AppState = {
     bimester4: string;
     reportCard: string;
     calendar: string;
+    seminars: string;
   };
 };
