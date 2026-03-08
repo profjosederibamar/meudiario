@@ -3,13 +3,14 @@ import { AppState, ClassLink } from './types';
 
 const initialState: AppState = {
   sheetUrls: {
-    bimester1: '',
-    bimester2: '',
-    bimester3: '',
-    bimester4: '',
+    bimester1: 'https://docs.google.com/spreadsheets/d/1rz4Vu2_bgqCJH7X5hPDSQFmRvVgRRJBdZphXK5IzTxE/edit?usp=sharing',
+    bimester2: 'https://docs.google.com/spreadsheets/d/1rz4Vu2_bgqCJH7X5hPDSQFmRvVgRRJBdZphXK5IzTxE/edit?usp=sharing',
+    bimester3: 'https://docs.google.com/spreadsheets/d/1rz4Vu2_bgqCJH7X5hPDSQFmRvVgRRJBdZphXK5IzTxE/edit?usp=sharing',
+    bimester4: 'https://docs.google.com/spreadsheets/d/1rz4Vu2_bgqCJH7X5hPDSQFmRvVgRRJBdZphXK5IzTxE/edit?usp=sharing',
     reportCard: '',
-    calendar: '',
-    seminars: '',
+    calendar: 'https://docs.google.com/spreadsheets/d/1Z8HAE5swjt4djCcvDpWueUCiFQ_Aq6V2-uBcCYatDz4/edit?usp=sharing',
+    seminars: 'https://docs.google.com/spreadsheets/d/1FYWmBUYSwTUm_1rGdIO4MqbSurKB0pq3sRlaKblRBJo/edit?usp=sharing',
+    attendance: 'https://docs.google.com/spreadsheets/d/1C8ARwdAes5QGDTCknim4D3FPbS-HDMDqd6uVvzn2sD8/edit?usp=sharing',
   }
 };
 

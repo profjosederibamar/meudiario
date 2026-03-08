@@ -14,6 +14,7 @@ import { Calendar } from './pages/Calendar';
 import { Settings } from './pages/Settings';
 import { Guide } from './pages/Guide';
 import { Seminars } from './pages/Seminars';
+import { Attendance } from './pages/Attendance';
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
             <Route path="boletim" element={<ReportCard />} />
             <Route path="calendario" element={<Calendar />} />
             <Route path="seminarios" element={<Seminars />} />
+            <Route path="frequencia" element={<Attendance />} />
             <Route path="guia" element={<Guide />} />
             <Route path="configuracoes" element={<Settings />} />
           </Route>

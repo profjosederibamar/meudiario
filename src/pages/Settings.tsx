@@ -20,6 +20,7 @@ export const Settings: React.FC = () => {
     { key: 'reportCard', label: 'Boletim' },
     { key: 'calendar', label: 'Calendário' },
     { key: 'seminars', label: 'Seminários' },
+    { key: 'attendance', label: 'Frequência' },
   ] as const;
 
   return (

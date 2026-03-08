@@ -9,7 +9,8 @@ import {
   Menu,
   HelpCircle,
   GraduationCap,
-  Users
+  Users,
+  CheckSquare
 } from 'lucide-react';
 
 const navItems = [
@@ -21,6 +22,7 @@ const navItems = [
   { path: '/boletim', label: 'Boletim', icon: FileText },
   { path: '/calendario', label: 'Calendário', icon: Calendar },
   { path: '/seminarios', label: 'Seminários', icon: Users },
+  { path: '/frequencia', label: 'Frequência', icon: CheckSquare },
   { path: '/guia', label: 'Guia de Uso', icon: HelpCircle },
   { path: '/configuracoes', label: 'Configurações', icon: Settings },
 ];
