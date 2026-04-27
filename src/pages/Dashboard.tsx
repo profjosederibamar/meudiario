@@ -10,7 +10,9 @@ import {
   CheckCircle2,
   AlertCircle,
   Clock,
-  HelpCircle
+  HelpCircle,
+  CheckCircle2 as CheckIcon,
+  BookOpen
 } from 'lucide-react';
 import { useStore } from '../store/StoreContext';
 
@@ -39,6 +41,10 @@ export const Dashboard: React.FC = () => {
   };
 
   const currentBimester = getCurrentBimester();
+
+  const pendingTasks = (state.tasks || []).filter(t => !t.completed);
+  const todayStr = new Date().toISOString().split('T')[0];
+  const todaysPlans = (state.studyPlans || []).filter(p => p.date === todayStr);
 
   return (
     <div className="space-y-8 max-w-6xl mx-auto pb-12">
@@ -109,6 +115,66 @@ export const Dashboard: React.FC = () => {
         >
           Ir para Avaliações
         </Link>
+      </div>
+
+      {/* Daily Summary */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="bg-white rounded-2xl p-6 border border-indigo-100 shadow-sm">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+              <CheckIcon className="h-5 w-5 text-indigo-600" />
+              Tarefas Pendentes
+            </h3>
+            <Link to="/tarefas" className="text-sm font-medium text-indigo-600 hover:text-indigo-700">Ver todas</Link>
+          </div>
+          {pendingTasks.length === 0 ? (
+            <p className="text-sm text-gray-500 bg-gray-50 p-3 rounded-xl border border-gray-100 text-center">Nenhuma tarefa pendente. Bom trabalho!</p>
+          ) : (
+            <ul className="space-y-3">
+              {pendingTasks.slice(0, 3).map(task => (
+                <li key={task.id} className="flex items-start gap-3 bg-gray-50 p-3 rounded-xl border border-gray-100">
+                  <div className="h-5 w-5 mt-0.5 rounded-full border-2 border-indigo-200 shrink-0"></div>
+                  <span className="text-sm text-gray-800 font-medium">{task.title}</span>
+                </li>
+              ))}
+              {pendingTasks.length > 3 && (
+                <li className="text-center text-xs text-gray-400 font-medium pt-1">
+                  + {pendingTasks.length - 3} tarefas...
+                </li>
+              )}
+            </ul>
+          )}
+        </div>
+
+        <div className="bg-white rounded-2xl p-6 border border-indigo-100 shadow-sm">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+              <BookOpen className="h-5 w-5 text-indigo-600" />
+              Aulas Hoje
+            </h3>
+            <Link to="/planejamento" className="text-sm font-medium text-indigo-600 hover:text-indigo-700">Planejar</Link>
+          </div>
+          {todaysPlans.length === 0 ? (
+            <p className="text-sm text-gray-500 bg-gray-50 p-3 rounded-xl border border-gray-100 text-center">Nenhum planejamento registrado para hoje.</p>
+          ) : (
+            <ul className="space-y-3">
+              {todaysPlans.slice(0, 3).map(plan => {
+                const classData = state.classes?.find(c => c.id === plan.classId);
+                return (
+                  <li key={plan.id} className="flex flex-col bg-indigo-50/50 p-3 rounded-xl border border-indigo-100">
+                    <span className="text-sm font-bold text-gray-900">{plan.title}</span>
+                    <span className="text-xs text-indigo-700 font-medium mt-1">{classData?.name || 'Turma Excluída'}</span>
+                  </li>
+                );
+              })}
+              {todaysPlans.length > 3 && (
+                <li className="text-center text-xs text-gray-400 font-medium pt-1">
+                  + {todaysPlans.length - 3} aulas...
+                </li>
+              )}
+            </ul>
+          )}
+        </div>
       </div>
 
       {/* Quick Access Grid */}

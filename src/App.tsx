@@ -15,6 +15,10 @@ import { Settings } from './pages/Settings';
 import { Guide } from './pages/Guide';
 import { Seminars } from './pages/Seminars';
 import { Attendance } from './pages/Attendance';
+import { Tasks } from './pages/Tasks';
+import { StudyPlan } from './pages/StudyPlan';
+import { ClassActivities } from './pages/ClassActivities';
+import { Classes } from './pages/Classes';
 
 export default function App() {
   return (
@@ -28,6 +32,10 @@ export default function App() {
             <Route path="calendario" element={<Calendar />} />
             <Route path="seminarios" element={<Seminars />} />
             <Route path="frequencia" element={<Attendance />} />
+            <Route path="tarefas" element={<Tasks />} />
+            <Route path="planejamento" element={<StudyPlan />} />
+            <Route path="atividades" element={<ClassActivities />} />
+            <Route path="turmas" element={<Classes />} />
             <Route path="guia" element={<Guide />} />
             <Route path="configuracoes" element={<Settings />} />
           </Route>

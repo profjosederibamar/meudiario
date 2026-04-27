@@ -11,11 +11,16 @@ const initialState: AppState = {
     calendar: 'https://docs.google.com/spreadsheets/d/1Z8HAE5swjt4djCcvDpWueUCiFQ_Aq6V2-uBcCYatDz4/edit?usp=sharing',
     seminars: 'https://docs.google.com/spreadsheets/d/1FYWmBUYSwTUm_1rGdIO4MqbSurKB0pq3sRlaKblRBJo/edit?usp=sharing',
     attendance: 'https://docs.google.com/spreadsheets/d/1C8ARwdAes5QGDTCknim4D3FPbS-HDMDqd6uVvzn2sD8/edit?usp=sharing',
-  }
+  },
+  tasks: [],
+  classes: [],
+  studyPlans: [],
+  activities: []
 };
 
 type StoreContextType = {
   state: AppState;
+  setState: React.Dispatch<React.SetStateAction<AppState>>;
   updateSheetUrl: (key: keyof AppState['sheetUrls'], url: string) => void;
 };
 
@@ -34,7 +39,11 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
           const parsed = JSON.parse(saved);
           setState(s => ({
             ...s,
-            sheetUrls: { ...s.sheetUrls, ...(parsed.sheetUrls || {}) }
+            sheetUrls: { ...s.sheetUrls, ...(parsed.sheetUrls || {}) },
+            tasks: parsed.tasks || [],
+            classes: parsed.classes || [],
+            studyPlans: parsed.studyPlans || [],
+            activities: parsed.activities || []
           }));
         }
       } catch (e) {
@@ -73,7 +82,7 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   };
 
   return (
-    <StoreContext.Provider value={{ state, updateSheetUrl }}>
+    <StoreContext.Provider value={{ state, setState, updateSheetUrl }}>
       {children}
     </StoreContext.Provider>
   );

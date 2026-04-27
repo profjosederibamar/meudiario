@@ -10,7 +10,11 @@ import {
   HelpCircle,
   GraduationCap,
   Users,
-  CheckSquare
+  CheckSquare,
+  CheckCircle2,
+  BookOpen,
+  Activity,
+  UserPlus
 } from 'lucide-react';
 
 const navItems = [
@@ -23,6 +27,10 @@ const navItems = [
   { path: '/calendario', label: 'Calendário', icon: Calendar },
   { path: '/seminarios', label: 'Seminários', icon: Users },
   { path: '/frequencia', label: 'Frequência', icon: CheckSquare },
+  { path: '/tarefas', label: 'Tarefas', icon: CheckCircle2 },
+  { path: '/planejamento', label: 'Planejamento', icon: BookOpen },
+  { path: '/atividades', label: 'Atividades', icon: Activity },
+  { path: '/turmas', label: 'Turmas', icon: UserPlus },
   { path: '/guia', label: 'Guia de Uso', icon: HelpCircle },
   { path: '/configuracoes', label: 'Configurações', icon: Settings },
 ];
